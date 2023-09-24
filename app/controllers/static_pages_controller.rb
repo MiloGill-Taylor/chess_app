@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
   end
-
+  
   def opponent_setup
   end
 

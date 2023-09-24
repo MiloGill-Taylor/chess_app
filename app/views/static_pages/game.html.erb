@@ -1,3 +1,33 @@
 <% provide(:title, 'Playing') %>
-<h1>Game</h1>
+
+<header>
+	<%= link_to 'Home', root_path, class: 'home_button' %>
+</header>
+
+<div class='game_board'>
+	<div id='board_row'>
+		<div id='left_strip'>
+		</div>
+		<div id='board'>
+			<table>
+				<% (0..7).each do |row| %>
+					<tr>
+					<% (0..7).each do  |col| %>
+						<% if (row.even? && col.even?) || row.odd? && col.odd?%>
+							<td id=<%="#{row},#{col}"%> class='light'> </td>
+						<% else %>
+							<td class='dark'></td>
+						<% end %>
+					<% end %>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div id='right_strip'>
+		</div>
+	</div>
+	<div id='bottom_strip'>
+	</div>
+</div>
+
 

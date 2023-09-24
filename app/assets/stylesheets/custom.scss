@@ -1,0 +1,161 @@
+/* Set up */
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	display: flex; 
+	flex-direction: column;
+	font-family: sans-serif;
+}
+
+$magenta: hsla(0, 75%, 30%, 1);
+$white_square: hsla(28, 44%, 58%, 1);
+$black_square: hsla(228, 28%, 18%, 1);
+
+a {
+	text-decoration: none;
+	font-weight: 900;
+	&:hover {
+		color: hsla(207, 100%, 40%, 1);
+	}
+}
+
+header {
+	height: 75px;
+	background-color: $magenta;
+	display: flex;
+	align-items: center;
+	
+
+	ul {
+		display: flex;
+		justify-content: space-evenly;
+		width: 100%;
+
+		li {
+			display: inline;
+		}
+	}
+
+	a {
+		color: hsla(0, 0%, 100%, 1);
+		font-weight: bold;
+		&.home_button {
+			/*margin: auto 0;*/
+			margin-left: 10px;
+		}
+	}
+}
+
+main {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: image-url('home_background.png');
+
+	section {
+		background-color: hsla(0, 100%, 0, 0.8);
+		border-radius: 10px;
+
+		ul {
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				text-align: center;
+				color: white;
+				padding: 10px 10px;
+
+				a.button {
+					background-color: $magenta;
+					&:hover {
+						background-color: hsla(207, 100%, 33%, 1); /* New background color on hover */
+					}
+				}
+
+				&.author {
+					font-size: 0.7em;
+					font-style: italic;
+					font-weight: 400;
+				}
+			}
+		}
+	
+	}
+}
+
+div.game_board {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	
+	#board_row {
+		flex: 1;
+		display: flex;
+
+		#left_strip {
+			background-color: $magenta;
+			width: 75px;
+			height: 100%
+		}
+
+		#board {
+			flex: 1;
+
+			table {
+				height: 100%;
+				width: 100%;
+				padding: 10px;
+
+				tr td {
+					&.light {
+						background-color: $white_square;
+					}
+					&.dark {
+						background-color: $black_square;
+					}
+				}
+			}
+		}
+
+		#right_strip {
+			background-color: $magenta;
+			width: 75px;
+			align-self: flex-end;
+			height: 100%;
+		}
+
+	}	
+}
+
+div#bottom_strip {
+	height: 75px;
+	background-color: $magenta;
+}
+
+
+.button {
+	display: inline-block;
+	padding: 20px 30px;
+	color: hsla(0, 0%, 100%, 1);                /* Button text color */
+	border-radius: 4px;                         /* Rounded corners */
+	font-weight: 600;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.chess-piece {
+  max-width: 100%; /* Ensure the image does not exceed the container size */
+  max-height: 100%;
+  width: auto; /* Allow the width to adapt to the height */
+  height: auto; /* Allow the height to adapt to the width */
+}
+
+/* Define different sizes for different screen sizes */
+@media screen and (max-width: 768px) {
+  .chess-piece {
+    max-width: 50%; /* Adjust the size for smaller screens */
+  }
+}
+

@@ -1,3 +1,19 @@
 <% provide(:title, 'Home') %>
-<h1>home</h1>
+<header class='home'>
+	<ul>
+		<li> <%= link_to 'About', about_path %> </li>
+		<li> <%= link_to 'Sign up', '#' %> </li>
+		<li> <%= link_to 'Log in', '#' %> </li>
+	</ul>
+</header>
+
+<main> 
+	<section>
+		<ul>
+			<li><%= link_to 'Play!', opponent_setup_path, class: 'button' %></li>
+			<li> <%= link_to 'Sign up', '#' %> to play your friends.</li>
+			<li class='author'> Built by Milo Gill-Taylor </li>
+		</ul>
+	</section>
+</main>
 
