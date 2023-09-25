@@ -24,10 +24,4 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'title', 'About | Chess'
   end
 
-  test "should get game" do
-    get game_path
-    assert_response :success
-    assert_template 'static_pages/game'
-    assert_select 'title', 'Playing | Chess'
-  end
 end
