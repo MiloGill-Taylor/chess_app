@@ -1,6 +1,13 @@
 require 'chess'
 
+
 class Game < ApplicationRecord
+	has_many :moves, dependent: :destroy # If a game is deleted, 
+										 # all associated moves are removed from db.
+										 # Note the plural :moves
+	validates :status, presence: true
+	validate :valid_status
+
 	def initialize_chess_game
 		@chess_game = Chess::Game.new
 	end
@@ -9,12 +16,29 @@ class Game < ApplicationRecord
 		@chess_game 
 	end 
 
-	before_save :serialize_chess_game
+	def load_game
+		@chess_game = Chess::Game.new moves_array
+	end
+
+	def moves_array
+			array = []
+			moves.each { |move| array << move.move }
+			array 
+		end 
 
 	private 
 
-	def serialize_chess_game
-		self.game = YAML::dump(@chess_game)
-		self.status = @chess_game.status.to_s
-	end
+		def set_status
+			status = @chess_game.status.to_s
+		end 
+
+		def valid_status
+			valid_states = %w[in_progress white_won black_won 
+						  white_won_resign black_won_resign 
+						  stalemate insufficient_material 
+						  fifty_move_rule threefold_repitition]
+			unless valid_states.include? status
+				errors.add(:status, 'invalid game state')
+			end 
+		end 
 end
