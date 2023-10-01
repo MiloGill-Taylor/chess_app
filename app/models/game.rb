@@ -7,6 +7,7 @@ class Game < ApplicationRecord
 										 # Note the plural :moves
 	validates :status, presence: true
 	validate :valid_status
+	before_validation :set_status
 
 	def initialize_chess_game
 		@chess_game = Chess::Game.new
@@ -22,14 +23,14 @@ class Game < ApplicationRecord
 
 	def moves_array
 			array = []
-			moves.each { |move| array << move.move }
+			self.moves.each { |move| array << move.move }
 			array 
 		end 
 
 	private 
 
 		def set_status
-			status = @chess_game.status.to_s
+			self.status = @chess_game.status.to_s
 		end 
 
 		def valid_status

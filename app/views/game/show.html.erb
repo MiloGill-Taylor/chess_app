@@ -1,4 +1,4 @@
-<% provide(:title, 'Playing') %>
+<% provide(:title, "Game #{@game.id}") %>
 
 <header>
 	<%= link_to 'Home', root_path, class: 'home_button' %>
@@ -10,13 +10,18 @@
 		</div>
 		<div id='board'>
 			<table>
-				<% (0..7).each do |row| %>
+				<% 7.downto(0) do |row| %>
 					<tr>
 					<% (0..7).each do  |col| %>
+						<% square = (row * 8) + col %>
 						<% if (row.even? && col.even?) || row.odd? && col.odd?%>
-							<td id=<%="#{row},#{col}"%> class='light'> </td>
+							<td id=<%="#{square}"%> class='light'>
+								<%= piece_img @game.chess_game.current, square %>
+							</td>
 						<% else %>
-							<td class='dark'></td>
+							<td id=<%="#{square}"%> class='dark'>
+								<%= piece_img @game.chess_game.current, square %>
+							</td>
 						<% end %>
 					<% end %>
 					</tr>

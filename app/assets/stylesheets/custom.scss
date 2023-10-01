@@ -110,11 +110,22 @@ div.game_board {
 				padding: 10px;
 
 				tr td {
+					position: relative;
+					width: 12.5%;
+					height: 12.5%;
 					&.light {
 						background-color: $white_square;
 					}
 					&.dark {
 						background-color: $black_square;
+					}
+					img.chess_piece {
+						  max-width: 100%; /* Limit the maximum width to fit within the square */
+  						max-height: 100%; /* Limit the maximum height to fit within the square */
+  						width: 75%; /* Maintain the aspect ratio */
+  						height: auto; /* Maintain the aspect ratio */
+  						display: block; /* Ensure proper alignment */
+  						margin: auto; /* Center the image horizontally */
 					}
 				}
 			}
