@@ -234,3 +234,18 @@ ol.games {
   }
 }
 
+/* flash */
+div.success {
+	background-color: hsla(120, 100%, 50%, 0.3);
+	border: 2px solid hsla(120, 100%, 50%, 1);
+	border-radius: 20px;
+	text-align: center;
+}
+
+div.warning {
+	background-color: hsla(0, 100%, 50%, 0.7);
+	border: 2px solid hsla(0, 100%, 50%, 1);
+	border-radius: 20px;
+	text-align: center;
+}
+

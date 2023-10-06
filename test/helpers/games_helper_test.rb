@@ -12,19 +12,4 @@ class GamesHelperTest < ActiveSupport::TestCase
       assert_equal squares_to_name[key], square_number_to_name(key)
     end 
   end
-
-  test "format_move should not include piece if the piece is a pawn" do 
-    piece = "P"
-    square = "20"
-    assert_equal "e3", format_move(piece,square)
-    piece = "p"
-    square = "39"
-    assert_equal "h5", format_move(piece,square)
-  end 
-
-  test "format_move should include piece if the piece is not a pawn" do 
-    piece = "N"
-    square = "21"
-    assert_equal "Nf3", format_move(piece,square)
-  end 
 end

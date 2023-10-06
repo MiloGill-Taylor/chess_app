@@ -39,9 +39,6 @@ module GamesHelper
   		end
 	end 
 
-	def format_move(move)
-		square = square_number_to_name square_num.to_i
-		piece == 'P' || piece == 'p' ? "#{square}" : "#{piece}#{square}"
-	end 
+
 
 end
