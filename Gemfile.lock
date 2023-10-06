@@ -71,6 +71,7 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.1.1)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -317,6 +318,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  bcrypt (= 3.1.18)
   bootsnap (= 1.12.0)
   bootstrap-will_paginate (= 1.0.0)
   byebug (~> 11)

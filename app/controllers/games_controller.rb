@@ -24,17 +24,14 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     begin 
       @game.add_move params[:game][:move]
+      @game.save # Will only run if there were no expections raised
     rescue Chess::IllegalMoveError => e 
       # Handle illegal move
-      p e
+      flash[:warning] = 'Illegal Move'
     rescue Chess::BadNotationError => e
       # Handle bad notation
-      p e
-    rescue Exception => e
-      # Handle other error
-      p e
+      flash[:warning] = 'Incorrect Move Notation'
     end
-    @game.save
     if @game.chess_game.over?
       # set flash
       redirect_to root_url # This is temporary
@@ -43,6 +40,6 @@ class GamesController < ApplicationController
     end 
   end 
 
-  def quit
+  def destroy
   end
 end

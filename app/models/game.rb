@@ -6,7 +6,7 @@ class Game < ApplicationRecord
 	validate :valid_status
 	before_validation :set_status
 	after_initialize :create_chess_game
-	
+	default_scope -> { order(created_at: :desc) }
 
 	def chess_game
 		@chess_game 
