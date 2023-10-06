@@ -1,0 +1,13 @@
+<% provide(:title, 'Games') %>
+
+<header id="header">
+  <%= link_to 'Home', root_path, class: 'home_button' %>
+  <h1 class='main_title'>All Games</h1>
+</header>
+
+
+<ol class="games">
+  <%= render @games %> 
+</ol>
+
+<%= will_paginate %>

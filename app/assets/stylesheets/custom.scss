@@ -1,17 +1,25 @@
 /* Set up */
 
-html, body {
+html, body{
 	margin: 0;
 	padding: 0;
-	height: 100%;
+	height: 100vh;
+	display: flex; 
+	flex-direction: column;
+}
+
+.container { 
+	flex: 1;
+	position: relative;
 	display: flex; 
 	flex-direction: column;
 	font-family: sans-serif;
 }
 
+
 $magenta: hsla(0, 75%, 30%, 1);
-$white_square: hsla(28, 44%, 58%, 1);
-$black_square: hsla(228, 28%, 18%, 1);
+$white_square: hsla(28, 44%, 58%, 0.9);
+$black_square: hsla(228, 28%, 18%, 0.8);
 
 a {
 	text-decoration: none;
@@ -21,12 +29,12 @@ a {
 	}
 }
 
-header {
+header#header {
 	height: 75px;
 	background-color: $magenta;
 	display: flex;
 	align-items: center;
-	
+	position: relative;	
 
 	ul {
 		display: flex;
@@ -45,6 +53,16 @@ header {
 			/*margin: auto 0;*/
 			margin-left: 10px;
 		}
+	}
+
+	h1.main_title {
+		color: hsla(0, 0%, 100%, 1);
+		font-weight: bold;
+		margin: 0;
+		position: absolute;
+		top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
 	}
 }
 
@@ -69,7 +87,6 @@ main {
 				padding: 10px 10px;
 
 				a.button {
-					background-color: $magenta;
 					&:hover {
 						background-color: hsla(207, 100%, 33%, 1); /* New background color on hover */
 					}
@@ -86,7 +103,7 @@ main {
 	}
 }
 
-div.game_board {
+div.game {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -94,58 +111,104 @@ div.game_board {
 	#board_row {
 		flex: 1;
 		display: flex;
+		flex-direction: row;
 
-		#left_strip {
-			background-color: $magenta;
-			width: 75px;
-			height: 100%
-		}
 
-		#board {
-			flex: 1;
+		#move_form {
+			/*background-color: $magenta;*/
+			width: 20%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-			table {
-				height: 100%;
-				width: 100%;
-				padding: 10px;
+			form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 
-				tr td {
-					position: relative;
-					width: 12.5%;
-					height: 12.5%;
-					&.light {
-						background-color: $white_square;
-					}
-					&.dark {
-						background-color: $black_square;
-					}
-					img.chess_piece {
-						  max-width: 100%; /* Limit the maximum width to fit within the square */
-  						max-height: 100%; /* Limit the maximum height to fit within the square */
-  						width: 75%; /* Maintain the aspect ratio */
-  						height: auto; /* Maintain the aspect ratio */
-  						display: block; /* Ensure proper alignment */
-  						margin: auto; /* Center the image horizontally */
+				label {
+					padding-bottom: 10px;
+				}
+
+				input {
+					margin-bottom: 10px;
+					&.button:hover {
+						background-color: hsla(207, 100%, 33%, 1); /* New background color on hover */
 					}
 				}
 			}
 		}
 
-		#right_strip {
-			background-color: $magenta;
-			width: 75px;
-			align-self: flex-end;
-			height: 100%;
+		#board {
+			padding: 20px;
+			flex: 1;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			/*background-color: $magenta;*/
+
+			table {
+				height: 100%;
+				width: 100%;
+
+				tr {
+					td {
+						position: relative;
+						width: 12.5%;
+						padding-top: 12.5%;
+						&.light {
+							background-color: $white_square;
+						}
+						&.dark {
+							background-color: $black_square;
+						}
+
+						p.square_label {
+							margin: 0;
+							position: absolute;
+							bottom: 0;
+							right: 0;
+							font-size: 0.8em;
+							font-weight: 800;
+						}
+						img.chess_piece {
+								position: absolute;
+      					top: 10px;
+      					left: 0;
+      					right: 0;
+      					bottom: 20px;
+							  max-width: 100%; /* Limit the maximum width to fit within the square */
+	  						max-height: 100%; /* Limit the maximum height to fit within the square */
+	  						width: 60%; /* Maintain the aspect ratio */
+	  						height: auto; /* Maintain the aspect ratio */
+	  						display: block; /* Ensure proper alignment */
+	  						margin: auto; /* Center the image horizontally */
+						}
+					}
+				}
+			}
 		}
 
-	}	
+
+	}
+
+
+	#bottom_strip {
+		height: 75px;
+		background-color: $magenta;
+	}
 }
 
-div#bottom_strip {
-	height: 75px;
-	background-color: $magenta;
+ol.games {
+	list-style: none;
+	li {
+		margin-bottom: 20px;
+		span.attribute{
+			font-weight: bold;
+		}
+	}
 }
-
 
 .button {
 	display: inline-block;
@@ -154,6 +217,7 @@ div#bottom_strip {
 	border-radius: 4px;                         /* Rounded corners */
 	font-weight: 600;
 	transition: background-color 0.3s, color 0.3s;
+	background-color: $magenta;
 }
 
 .chess-piece {

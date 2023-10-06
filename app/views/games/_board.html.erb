@@ -1,0 +1,22 @@
+<table>
+	<tbody>
+		<% 7.downto(0) do |row| %>
+			<tr>
+			<% (0..7).each do  |col| %>
+				<% square = (row * 8) + col %>
+				<% if (row.even? && col.even?) || row.odd? && col.odd?%>
+					<td id=<%="#{square}"%> class='square light'>
+						<%= piece_img @game.chess_game.current, square %>
+						<p class='square_label'><%= square_number_to_name square %></p>
+					</td>
+				<% else %>
+					<td id=<%="#{square}"%> class='square dark'>
+						<%= piece_img @game.chess_game.current, square %>
+						<p class='square_label'><%= square_number_to_name square %></p>
+					</td>
+				<% end %>
+			<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

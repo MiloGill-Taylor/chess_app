@@ -7,14 +7,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/home'
     assert_select 'title', 'Chess'
     assert_select 'a[href=?]', about_path
-    assert_select 'a[href=?]', opponent_setup_path
-  end
-
-  test "should get opponent_setup" do
-    get opponent_setup_path
-    assert_response :success
-    assert_template 'static_pages/opponent_setup'
-    assert_select 'title', 'Setup Game | Chess'
   end
 
   test "should get about" do

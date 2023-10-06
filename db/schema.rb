@@ -10,21 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_135548) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_24_201148) do
   create_table "games", force: :cascade do |t|
     t.string "status"
+    t.text "moves"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "moves", force: :cascade do |t|
-    t.string "move"
-    t.integer "game_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id", "created_at"], name: "index_moves_on_game_id_and_created_at"
-    t.index ["game_id"], name: "index_moves_on_game_id"
-  end
-
-  add_foreign_key "moves", "games"
 end

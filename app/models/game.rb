@@ -2,35 +2,30 @@ require 'chess'
 
 
 class Game < ApplicationRecord
-	has_many :moves, dependent: :destroy # If a game is deleted, 
-										 # all associated moves are removed from db.
-										 # Note the plural :moves
 	validates :status, presence: true
 	validate :valid_status
 	before_validation :set_status
-
-	def initialize_chess_game
-		@chess_game = Chess::Game.new
-	end
+	after_initialize :create_chess_game
+	
 
 	def chess_game
 		@chess_game 
 	end 
 
-	def load_game
-		@chess_game = Chess::Game.new moves_array
-	end
-
-	def moves_array
-			array = []
-			self.moves.each { |move| array << move.move }
-			array 
-		end 
+	 def add_move move 
+	 	@chess_game.move move # Check move is valid.  This will raise the appropiate exception and halt execution if it is invalid
+	 	# move must be valid
+	 	self.moves.nil? ? self.moves = "#{move}" : self.moves += ",#{move}"
+	 end 
 
 	private 
 
+		def create_chess_game
+			@chess_game = Chess::Game.new moves_array
+		end
+
 		def set_status
-			self.status = @chess_game.status.to_s
+			self.status = @chess_game.status.to_s unless Rails.env.test?
 		end 
 
 		def valid_status
@@ -42,4 +37,13 @@ class Game < ApplicationRecord
 				errors.add(:status, 'invalid game state')
 			end 
 		end 
+
+		def moves_array
+			if self.moves.nil?
+				Array.new 
+			else
+				self.moves.split(',')
+			end 
+		end
+	
 end

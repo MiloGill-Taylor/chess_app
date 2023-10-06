@@ -1,0 +1,24 @@
+<% provide(:title, "Game #{@game.id}") %>
+
+<script>
+  // Embed @game.id as a JavaScript variable
+  var gameId = <%= @game.id %>;
+</script>
+
+<header id="header">
+	<%= link_to 'Home', root_path, class: 'home_button' %>
+</header>
+
+<div class='game'>
+	<div id='board_row'>
+		<div id='move_form'>
+			<%= render 'move_form' %>
+		</div>
+		<div id="board">
+				<%= render 'board' %>
+		</div>
+	</div>
+	<div id='bottom_strip'>
+	</div>
+</div>
+
