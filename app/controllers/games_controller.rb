@@ -36,7 +36,8 @@ class GamesController < ApplicationController
       # set flash
       redirect_to root_url # This is temporary
     else
-      redirect_to game_path @game 
+      #redirect_to game_path @game 
+      render 'show', status: :see_other
     end 
   end 
 

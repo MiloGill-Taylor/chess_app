@@ -1,0 +1,21 @@
+<% provide(:title, @user.name) %>
+<header id="header">
+	<%= link_to 'Home', root_path, class: 'home_button' %>
+  	<h1 class='main_title'>Profile</h1>
+
+	<ul class='home-header'>
+		<li> <%= link_to 'Log out', '#' %> </li>
+	</ul>
+</header>
+
+<div class='row'>
+	<div class='profile'>
+		<h1> <%= @user.name %> </h1>
+		<h5> email: <%= @user.email %> </h5>
+		<h5> games completed: not implimented yet </h5>
+		<h5> games playing: not implimented yet </h5>
+	</div>
+	<div class='games'>
+		# Need to impliment the association first
+	</div>
+</div>

@@ -21,6 +21,7 @@ $magenta: hsla(0, 75%, 30%, 1);
 $white_square: hsla(28, 44%, 58%, 0.9);
 $black_square: hsla(228, 28%, 18%, 0.8);
 
+
 a {
 	text-decoration: none;
 	font-weight: 900;
@@ -36,13 +37,14 @@ header#header {
 	align-items: center;
 	position: relative;	
 
-	ul {
+	ul.home-header {
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: flex-end;
 		width: 100%;
 
 		li {
 			display: inline;
+			margin-right: 20px;
 		}
 	}
 
@@ -107,97 +109,109 @@ div.game {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	
-	#board_row {
-		flex: 1;
+
+
+	#move_form {
+		/*background-color: $magenta;*/
+		width: 20%;
+		height: 100%;
 		display: flex;
-		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 
-
-		#move_form {
-			/*background-color: $magenta;*/
-			width: 20%;
-			height: 100%;
+		form {
 			display: flex;
-			justify-content: center;
+			flex-direction: column;
 			align-items: center;
 
-			form {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
+			label {
+				padding-bottom: 10px;
+			}
 
-				label {
-					padding-bottom: 10px;
-				}
-
-				input {
-					margin-bottom: 10px;
-					&.button:hover {
-						background-color: hsla(207, 100%, 33%, 1); /* New background color on hover */
-					}
+			input {
+				margin-bottom: 10px;
+				&.button:hover {
+					background-color: hsla(207, 100%, 33%, 1); /* New background color on hover */
 				}
 			}
 		}
-
-		#board {
-			padding: 20px;
-			flex: 1;
-			display:flex;
-			align-items: center;
-			justify-content: center;
-			/*background-color: $magenta;*/
-
-			table {
-				height: 100%;
-				width: 100%;
-
-				tr {
-					td {
-						position: relative;
-						width: 12.5%;
-						padding-top: 12.5%;
-						&.light {
-							background-color: $white_square;
-						}
-						&.dark {
-							background-color: $black_square;
-						}
-
-						p.square_label {
-							margin: 0;
-							position: absolute;
-							bottom: 0;
-							right: 0;
-							font-size: 0.8em;
-							font-weight: 800;
-						}
-						img.chess_piece {
-								position: absolute;
-      					top: 10px;
-      					left: 0;
-      					right: 0;
-      					bottom: 20px;
-							  max-width: 100%; /* Limit the maximum width to fit within the square */
-	  						max-height: 100%; /* Limit the maximum height to fit within the square */
-	  						width: 60%; /* Maintain the aspect ratio */
-	  						height: auto; /* Maintain the aspect ratio */
-	  						display: block; /* Ensure proper alignment */
-	  						margin: auto; /* Center the image horizontally */
-						}
-					}
-				}
-			}
-		}
-
-
 	}
 
+	#board {
+		padding: 20px;
+		flex: 1;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		/*background-color: $magenta;*/
+
+		table {
+			height: 100%;
+			width: 100%;
+
+			tr {
+				td {
+					position: relative;
+					width: 12.5%;
+					padding-top: 12.5%;
+					&.light {
+						background-color: $white_square;
+					}
+					&.dark {
+						background-color: $black_square;
+					}
+
+					p.square_label {
+						margin: 0;
+						position: absolute;
+						bottom: 0;
+						right: 0;
+						font-size: 0.8em;
+						font-weight: 800;
+					}
+					img.chess_piece {
+							position: absolute;
+    					top: 10px;
+    					left: 0;
+    					right: 0;
+    					bottom: 20px;
+						  max-width: 100%; /* Limit the maximum width to fit within the square */
+  						max-height: 100%; /* Limit the maximum height to fit within the square */
+  						width: 60%; /* Maintain the aspect ratio */
+  						height: auto; /* Maintain the aspect ratio */
+  						display: block; /* Ensure proper alignment */
+  						margin: auto; /* Center the image horizontally */
+					}
+				}
+			}
+		}
+	}
 
 	#bottom_strip {
 		height: 75px;
 		background-color: $magenta;
 	}
+}
+
+div.row{
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+}
+
+div.profile {
+	height: 100%;
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+div.games {
+	flex: 1;
+	display: flex;
+
+	justify-content: center;
 }
 
 ol.games {
@@ -249,3 +263,27 @@ div.warning {
 	text-align: center;
 }
 
+/* Sign up form */
+div.form{
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+
+	input, textarea, select, .uneditable-input {
+	display: block;
+  border: 1px solid #bbb;
+  width: 300px;
+  margin-bottom: 15px;
+	}
+
+	input {
+	  height: auto !important;
+	}
+
+	div.error-messages{
+		color: red;
+	}
+	
+}
