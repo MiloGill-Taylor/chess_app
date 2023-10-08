@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_07_123344) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_07_151310) do
   create_table "games", force: :cascade do |t|
     t.string "status"
     t.text "moves"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "white_player_id"
+    t.integer "black_player_id"
+    t.index "\"black_player\"", name: "index_games_on_black_player"
+    t.index "\"white_player\"", name: "index_games_on_white_player"
+    t.index ["black_player_id"], name: "index_games_on_black_player_id"
     t.index ["created_at"], name: "index_games_on_created_at"
+    t.index ["white_player_id"], name: "index_games_on_white_player_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,4 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_07_123344) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "games", "users", column: "black_player_id"
+  add_foreign_key "games", "users", column: "white_player_id"
 end

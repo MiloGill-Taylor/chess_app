@@ -24,6 +24,10 @@ class User < ApplicationRecord
 		BCrypt::Password.create(string, cost: cost)
 	end
 
+	def games
+		Game.where('white_player_id = ? OR black_player_id = ?', self.id, self.id)
+	end 
+
 	def set_session_token
 		token = User.new_token 
 		self.update_attribute(:session_token, token)
