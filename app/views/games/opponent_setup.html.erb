@@ -1,16 +1,15 @@
 <% provide(:title, 'Setup Game') %>
 
-<header>
+<header id="header">
 	<%= link_to 'Home', root_path, class: 'home_button' %>
 </header>
 
 <main>
 	<section>
 		<ul>
-			<li><%= link_to 'AI', game_path, class: 'button'%></li>
+			<li><%= link_to 'AI', new_game_path(opponent: 'AI'), class: 'button' %></li>
 			<li><%= link_to 'Friend', '#', class: 'button' %></li>
-			<li><%= link_to 'Guest', game_path, class: 'button' %></li>
+			<li><%= link_to 'Guest', new_game_path(opponent: 'Guest'), class: 'button' %></li>
 		</ul>
 	</section>
 </main>
-

@@ -1,0 +1,7 @@
+<%= turbo_stream.update "board" do %>
+    <%= render partial: 'board' %>
+<% end %>
+
+<%= turbo_stream.update 'show-turn' do %>
+    <%= render partial: 'show_turn' %>
+<% end %>

@@ -1,8 +1,15 @@
+require 'stockfish'
+
 class GamesController < ApplicationController
   include GamesHelper
 
   def new
-    @game = Game.new
+    if logged_in? 
+      black_id = params[:opponent] == 'AI' ? -1 : nil
+      @game = Game.new(white_player_id: current_user.id, black_player_id: black_id)
+    else
+      @game = Game.new(white_player_id: nil, black_player_id: nil)
+    end 
     if @game.save
       redirect_to game_path @game
     else
@@ -18,29 +25,39 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    p "last move #{@game.chess_game.moves[-1]}"
   end
 
-  def update
+  def player_move
     @game = Game.find(params[:id])
-    begin 
-      @game.add_move params[:game][:move]
-      @game.save # Will only run if there were no expections raised
-    rescue Chess::IllegalMoveError => e 
-      # Handle illegal move
-      flash[:warning] = 'Illegal Move'
-    rescue Chess::BadNotationError => e
-      # Handle bad notation
-      flash[:warning] = 'Incorrect Move Notation'
-    end
-    if @game.chess_game.over?
-      # set flash
-      redirect_to root_url # This is temporary
-    else
-      #redirect_to game_path @game 
-      render 'show', status: :see_other
+    move = params[:game][:move]
+    move_cycle(@game, move) 
+    
+  end 
+
+  def ai_move
+    engine = Stockfish::Engine.new 
+    @game = Game.find(params[:id])
+    configure_engine engine 
+    pass_position_to_engine(@game, engine)
+    if engine_ready? engine 
+      move = generate_move engine 
+    else 
+      p 'oh dear'
+      p '#'*200 # should notice that
     end 
+    engine.execute "quit"
+    p "ai move: #{move}"
+    move_cycle(@game, move)
   end 
 
   def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    flash[:success] = "Game deleted"
+    redirect_back_or_to(root_url, status: :see_other)
+  end
+
+  def opponent_setup
   end
 end

@@ -26,6 +26,9 @@ gem 'rubocop-rake',        '~> 0'
 gem 'simplecov',           '~> 0'
 gem 'yard',                '>= 0.9.20'
 gem 'chess',               '~> 0.3.4'
+# Chess Engine dependencies
+gem 'pry',                  '~> 0.10'
+gem 'stockfish'
 
 group :development, :test do
   gem "sqlite3", "1.4.2"

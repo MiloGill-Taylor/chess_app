@@ -1,5 +1,9 @@
 <% provide(:title, "Game #{@game.id}") %>
 
+<script>
+	window.gameId = <%= @game.id %>
+</script>
+
 <header id="header">
 	<%= link_to 'Home', root_path, class: 'home_button' %>
 </header>
@@ -10,7 +14,7 @@
 			<%= render 'move_form' %>
 		</div>
 		<div id="board">
-				<%= render 'board' %>
+			<%= render 'board' %>
 		</div>
 	</div>
 	<div id='bottom_strip'>

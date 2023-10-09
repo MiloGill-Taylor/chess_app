@@ -1,0 +1,18 @@
+<header id="header">
+	<ul class='home-header'>
+		<li> <%= link_to 'About', about_path %> </li>
+		<li> <%= link_to 'Profile', user_path(current_user) %> </li>
+		<li> <%= link_to 'log out', logout_path, data: { "turbo-method": :delete }%> </li>
+		<li> <%= link_to 'Games', games_path %></li>
+	</ul>
+</header>
+
+<main> 
+	<section>
+		<ul>
+			
+			<li><%= link_to 'Play!', setup_path, class: 'button' %></li> 
+			<li class='author'> Built by Milo Gill-Taylor </li>
+		</ul>
+	</section>
+</main>

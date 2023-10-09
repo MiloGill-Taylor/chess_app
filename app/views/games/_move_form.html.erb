@@ -1,9 +1,10 @@
 
+<div id='show-turn'>
+	<%= render 'show_turn' %>
+</div>
 
-<%= form_with( model: @game ) do |f| %>
-	
-	<%= f.label :move %>
-	<%= f.text_field :move %>
-
-	<%= f.submit 'Make Move', class: 'button' %>
+<% if ai_turn? @game %>
+	<%= render 'ai_move' %>
+<% else %>
+	<%= render 'player_move' %>
 <% end %>

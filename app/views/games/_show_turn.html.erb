@@ -1,0 +1,7 @@
+<% if logged_in? %>
+	<div class="turn <%= white_move? @game %>"> You </div>
+	<div class="turn <%= black_move? @game %>"> <%= get_opponent @game %> </div>
+<% else %>
+	<div class="turn <%= white_move? @game %>"> White </div>
+	<div class="turn <%= black_move? @game %>"> Black </div>
+<% end %>

@@ -1,0 +1,18 @@
+<header id="header">
+	<ul class='home-header'>
+		<li> <%= link_to 'About', about_path %> </li>
+		<li> <%= link_to 'Sign up', new_user_path %> </li>
+		<li> <%= link_to 'Log in', login_path %> </li>
+		<li> <%= link_to 'Games', games_path %></li>
+	</ul>
+</header>
+
+<main> 
+	<section>
+		<ul>
+			<li><%= link_to 'Play!', new_game_path, class: 'button' %></li>
+			<li> <%= link_to 'Sign up', new_user_path %> to play your friends.</li>
+			<li class='author'> Built by Milo Gill-Taylor </li>
+		</ul>
+	</section>
+</main>

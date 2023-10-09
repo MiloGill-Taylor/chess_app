@@ -1,21 +1,9 @@
 <% provide(:title, 'Home') %>
-<header id="header">
-	<% if logged_in? %>
-		<%= render 'logged_in_header' %>
-	<% else %>
-		<%= render 'logged_out_header' %>
-	<% end %>
-</header>
 
-<main> 
-	<section>
-		<ul>
-			<li><%= link_to 'Play!', new_game_path, class: 'button' %></li>
-			<% if !logged_in? %>
-				<li> <%= link_to 'Sign up', new_user_path %> to play your friends.</li>
-			<% end %>
-			<li class='author'> Built by Milo Gill-Taylor </li>
-		</ul>
-	</section>
-</main>
+<% if logged_in? %>
+	<%= render 'logged_in_home' %>
+<% else %>
+	<%= render 'logged_out_home' %>
+<% end %>
+
 

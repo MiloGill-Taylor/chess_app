@@ -20,6 +20,7 @@ html, body{
 $magenta: hsla(0, 75%, 30%, 1);
 $white_square: hsla(28, 44%, 58%, 0.9);
 $black_square: hsla(228, 28%, 18%, 0.8);
+$active: hsla(116, 80%, 71%, 0.77);
 
 
 a {
@@ -118,6 +119,24 @@ div.game {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		display: relative;
+
+
+		div#show-turn {
+			position: absolute;
+			top: 100px;
+			.turn {
+				display: inline-block;
+				width: 75px;
+				height: 40px;
+				text-align: center;
+					margin-right: 10px;
+				&.active {
+					background-color: $active;
+					font-weight: 900;
+				}
+			}
+		}
 
 		form {
 			display: flex;
