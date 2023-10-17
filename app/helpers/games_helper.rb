@@ -79,7 +79,7 @@ module GamesHelper
 		engine.execute 'setoption name Clear Hash'
 		engine.execute 'setoption name MultiPV value 1'
 		engine.execute 'setoption name Use NNUE value false'
-		engine.execute 'setoption name Skill Level value 1'
+		engine.execute 'setoption name Skill Level value 20'
 	end
 
 	def pass_position_to_engine(game, engine)
